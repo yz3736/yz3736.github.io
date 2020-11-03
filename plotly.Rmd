@@ -1,0 +1,54 @@
+---
+title: "Plotly"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+### Loading data
+We're gonna look at Instacart data:
+
+```{r message = FALSE}
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+```
+
+```{r warning = FALSE}
+data("instacart")
+
+instacart = 
+  instacart %>% 
+  as_tibble(instacart) %>% 
+  select(order_hour_of_day, aisle, department) %>% 
+  filter(department %in% c("produce","dairy eggs"))
+```
+
+
+### Plotly plots
+## Barchart
+This is a barchart that shows the number of items ordered in each aisle from _Produce_ or _Dairy/Eggs_ departments (aisles are ordered by ascending number of items).
+```{r warning = FALSE}
+instacart %>% 
+  count(aisle, department) %>% 
+  mutate(aisle = fct_reorder(aisle, n)) %>% 
+  plot_ly(x = ~aisle, y = ~n, color = ~department, type = "bar", colors = "viridis")
+```
+
+## Boxplot
+This is a barchart that shows the distribution of order time in hours for each aisle from _Produce_ or _Dairy/Eggs_ departments (aisles are ordered by ascending median order time).
+```{r}
+instacart %>% 
+  mutate(aisle = fct_reorder(aisle, order_hour_of_day)) %>% 
+  plot_ly(x = ~aisle, y = ~order_hour_of_day, color = ~department, type = "box", colors = "viridis")
+```
+
+## Line plot
+This is a line plot that shows the distribution of the number of items ordered over hours of day, for each aisle from _Produce_ or _Dairy/Eggs_ departments.
+```{r}
+instacart %>% 
+  count(aisle, order_hour_of_day) %>% 
+  plot_ly(x = ~order_hour_of_day, y = ~n, color = ~aisle, type = "scatter", mode = "line", colors = "viridis")
+```
+
