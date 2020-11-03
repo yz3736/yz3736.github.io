@@ -5,7 +5,13 @@ output:
     toc: true
     toc_float: true
 ---
+MPH Candidate at Mailman School of Public Health
 
-### I have a webpage!
+<img src="image/Yolanda.JPG" style="width:50%">
 
-And I can put all kinds of stuff on it!
+### About
+I am a second year MPH student at [Mailman School of Public Health - Columbia University](https://www.publichealth.columbia.edu/), majoring in Biostatistics, with a certificate in Advanced Epidemiology. I obtained my BS in Statistics from [University of California, Davis](https://www.ucdavis.edu/). I am interested in clinical research and my career goal is to become a biostatistician in pharmaceutical industry.
+
+### Contact Information
+Yuanxin (Yolanda) Zhang\
+Email: [yz3736@cumc.columbia.edu](mailto: yz3736@cumc.columbia.edu)
