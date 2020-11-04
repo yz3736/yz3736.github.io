@@ -24,7 +24,7 @@ instacart =
   filter(department %in% c("produce","dairy eggs"))
 ```
 
-Column {data-width=500}
+Column {data-width=600}
 -----------------------------------------------------------------------
 
 ### Chart A
@@ -38,6 +38,18 @@ instacart %>%
          xaxis = list(title = "Aisle"), yaxis = list(title = "Number of items ordered"))
 ```
 
+### Chart C
+
+```{r}
+instacart %>% 
+  count(aisle, order_hour_of_day) %>% 
+  plot_ly(x = ~order_hour_of_day, y = ~n, color = ~aisle, type = "scatter", mode = "line", colors = "viridis")  %>% 
+  layout(title  = "Number of items ordered over hours of day for each aisle", xaxis = list(title = "Order time in hours"), yaxis = list(title = "Number of items ordered"))
+```
+
+Column {data-width=400}
+-----------------------------------------------------------------------
+
 ### Chart B
 
 ```{r}
@@ -48,15 +60,4 @@ instacart %>%
          xaxis = list(title = "Aisle"), yaxis = list(title = "Order time in hours"))
 ```
 
-Column {data-width=500}
------------------------------------------------------------------------
-
-### Chart C
-
-```{r}
-instacart %>% 
-  count(aisle, order_hour_of_day) %>% 
-  plot_ly(x = ~order_hour_of_day, y = ~n, color = ~aisle, type = "scatter", mode = "line", colors = "viridis")  %>% 
-  layout(title  = "Number of items ordered over hours of day for each aisle", xaxis = list(title = "Order time in hours"), yaxis = list(title = "Number of items ordered"))
-```
 
