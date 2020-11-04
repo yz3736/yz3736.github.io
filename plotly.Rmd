@@ -6,7 +6,7 @@ output:
     toc_float: true
 ---
 
-### Loading data
+## Loading data
 We're gonna look at Instacart data:
 
 ```{r message = FALSE}
@@ -26,8 +26,8 @@ instacart =
 ```
 
 
-### Plotly plots
-## Barchart
+## Plotly plots
+### Barchart
 This is a barchart that shows the number of items ordered in each aisle from _Produce_ or _Dairy/Eggs_ departments (aisles are ordered by ascending number of items).
 ```{r warning = FALSE}
 instacart %>% 
@@ -36,7 +36,7 @@ instacart %>%
   plot_ly(x = ~aisle, y = ~n, color = ~department, type = "bar", colors = "viridis")
 ```
 
-## Boxplot
+### Boxplot
 This is a barchart that shows the distribution of order time in hours for each aisle from _Produce_ or _Dairy/Eggs_ departments (aisles are ordered by ascending median order time).
 ```{r}
 instacart %>% 
@@ -44,7 +44,7 @@ instacart %>%
   plot_ly(x = ~aisle, y = ~order_hour_of_day, color = ~department, type = "box", colors = "viridis")
 ```
 
-## Line plot
+### Line plot
 This is a line plot that shows the distribution of the number of items ordered over hours of day, for each aisle from _Produce_ or _Dairy/Eggs_ departments.
 ```{r}
 instacart %>% 

@@ -1,0 +1,57 @@
+---
+title: "Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    source: embed
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+library(flexdashboard)
+```
+
+```{r warning = FALSE}
+data("instacart")
+
+instacart = 
+  instacart %>% 
+  as_tibble(instacart) %>% 
+  select(order_hour_of_day, aisle, department) %>% 
+  filter(department %in% c("produce","dairy eggs"))
+```
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+instacart %>% 
+  count(aisle, department) %>% 
+  mutate(aisle = fct_reorder(aisle, n)) %>% 
+  plot_ly(x = ~aisle, y = ~n, color = ~department, type = "bar", colors = "viridis")
+```
+
+### Chart B
+
+```{r}
+instacart %>% 
+  mutate(aisle = fct_reorder(aisle, order_hour_of_day)) %>% 
+  plot_ly(x = ~aisle, y = ~order_hour_of_day, color = ~department, type = "box", colors = "viridis")
+```
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Chart C
+
+```{r}
+instacart %>% 
+  count(aisle, order_hour_of_day) %>% 
+  plot_ly(x = ~order_hour_of_day, y = ~n, color = ~aisle, type = "scatter", mode = "line", colors = "viridis")
+```
+
